@@ -27,7 +27,8 @@ class DebugDumpCommand extends Command
                 new InputArgument('template-name', InputArgument::REQUIRED, 'A template name'),
             ))
             ->setDescription('Compiles a HAML template and dumps the resulting Twig template')
-            ->setHelp(<<<EOF
+            ->setHelp(
+                <<<EOF
 The <info>%command.name%</info> command compiles a HAML template and dumps the resulting Twig template.
 
 Example:
@@ -41,7 +42,7 @@ EOF
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $output->write(
-            $this->loader->getSourceContext($input->getArgument('template-name'))
+            $this->loader->getSourceContext($input->getArgument('template-name'))->getCode()
         );
     }
 }
